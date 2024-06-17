@@ -1,36 +1,22 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th = "http://www.thymeleaf.org/">
 <head>
-  <meta charset="UTF-8">
-  <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-  <title>Sign Up</title>
+    <title>Add User</title>
 </head>
 <body>
-<form method = 'post' th:action="@{/user}">
-  <label>
-    Username:
-    <input type = 'text' name = 'username' th:value="${username}">
-  </label>
+<form th:action="${/user}" method="post">
+    <label>Username:</label><br>
+    <input type="text" id="username" name="username" th:value="${user.username}"><br>
 
-  <label>
-    Email:
-    <input type = 'email' name = 'email' th:value="${email}">
-  </label>
+    <label>Email:</label><br>
+    <input type="text" id="email" name="email" th:value="${user.email}"><br>
 
-  <label>
-    Password:
-    <input type = 'password' name = 'password'>
-  </label>
+    <label>Password:</label><br>
+    <input type="password" id="password" name="password" th:value="${user.password}"><br>
 
-  <label>
-    Verify Password:
-    <input type = 'password' name = 'verify'>
-  </label>
+    <label for="verifyPassword">Verify Password:</label><br>
+    <input type="password" id="verifyPassword" name="verifyPassword"><br>
 
-  <p th:text="${error}"></p>
-
-  <input type = 'submit' value = 'Sign Up'>
+    <input type="submit" value="Submit">
 </form>
-
 </body>
 </html>

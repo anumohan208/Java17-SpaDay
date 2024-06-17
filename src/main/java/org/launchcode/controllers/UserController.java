@@ -1,21 +1,24 @@
 package org.launchcode.controllers;
-
+import jakarta.validation.Valid;
 import org.launchcode.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
-
     @GetMapping("/add")
-    public String displayAddUserForm() {
+    public String displayAddUserForm(Model model, @ModelAttribute User user) {
+        model.addAttribute(new User());
         return "user/add";
     }
-
     @PostMapping
-    public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
+    public String processAddUserForm(Model model, @Valid @ModelAttribute User user, String verify, Error error) {
         model.addAttribute("user", user);
         model.addAttribute("verify", verify);
         model.addAttribute("username", user.getUsername());
@@ -29,6 +32,5 @@ public class UserController {
         }
 
     }
-
 
 }
